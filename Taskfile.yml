@@ -7,6 +7,12 @@ vars:
     sh: conda list | grep -E -i -w "^$(conda env export --no-builds --from-history | awk '$1 == "-"{ if (key == "dependencies:") print $NF; next } {key=$1}' | sed 's/=.*//' | tr -s '\r\n' '|' | sed 's/|$//')\s" | awk '{ print $1 "=" $2 }' | sed 's/^/  - /'
 
 tasks:
+  git_init:
+  prompt: "This task will reset your git history! Are you sure you want to continue?"
+    cmds:
+      - |-
+        rm -rf .git
+        git init
   gen_linux_env_yaml:
     cmds:
       - |-

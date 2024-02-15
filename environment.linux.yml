@@ -1,4 +1,3 @@
-name: igdesign
 channels:
   - pyg
   - nvidia
